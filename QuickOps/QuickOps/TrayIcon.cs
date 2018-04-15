@@ -15,7 +15,7 @@ namespace QuickOps
         //private ClipboardCleaner MyClipboardCleaner = new ClipboardCleaner();
         private QuickOpsForm quickOpsForm;
         private Monitor monitor;
-        private Thread writeThread;
+        //private Thread writeThread;
 
         public TrayIcon()
         {
@@ -32,6 +32,7 @@ namespace QuickOps
             monitor = new Monitor();
             monitor.CaptureHttp();
             quickOpsForm.Visible = false;
+            quickOpsForm.TopMost = true;
             trayIcon.MouseClick += new MouseEventHandler(ShowQuickOpsForm);
         }
 
