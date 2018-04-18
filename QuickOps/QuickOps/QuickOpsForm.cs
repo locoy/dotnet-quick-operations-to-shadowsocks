@@ -17,13 +17,20 @@ namespace QuickOps
 
         public QuickOpsForm()
         {
+            Monitor monitor = new Monitor();
+            monitor.OutputChanged += new EventHandler(Output_Changed);
+            monitor.StartPrintDateTime();
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void Output_Changed(object sender, EventArgs e)
+        {
+            textBox1.Text = Monitor.output.ToString();
+        }
     }
 }

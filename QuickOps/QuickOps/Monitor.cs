@@ -5,36 +5,47 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Threading;
+using Fiddler;
 
 namespace QuickOps
 {
     class Monitor
     {
-        public Stream output;
-
-        public void CaptureHttp()
+        public event EventHandler OutputChanged;
+        public static StringBuilder output = new StringBuilder();
+        public StringBuilder Output
         {
-            using (HttpListener listener = new HttpListener())
+            get
             {
-                listener.Prefixes.Add("http://*:80/");
-                listener.Prefixes.Add("https://*:80/");
-                listener.Start();
-                HttpListenerContext context = listener.GetContext();
-                HttpListenerRequest request = context.Request;
-                // Obtain a response object.
-                HttpListenerResponse response = context.Response;
-                // Construct a response.
-                string responseString = "<HTML><BODY> Hello world!</BODY></HTML>";
-                byte[] buffer = Encoding.UTF8.GetBytes(responseString);
-                // Get a response stream and write the response to it.
-                response.ContentLength64 = buffer.Length;
-                output = response.OutputStream;
-                output.Write(buffer, 0, buffer.Length);
-
-                // You must close the output stream.
-                //output.Close();
-                //listener.Stop();
+                return output;
             }
+            set
+            {
+                output = value;
+                OnPropertyChanged(new EventArgs());
+            }
+        }
+
+        public void StartPrintDateTime()
+        {
+            Thread th = new Thread(PrintDateTime);
+            th.Start();
+        }
+        
+        private static void PrintDateTime()
+        {
+            while (true)
+            {
+                output.Append(DateTime.Now.ToString());
+                output.Append("\n");
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void OnPropertyChanged(EventArgs e)
+        {
+            OutputChanged?.Invoke(this, e);
         }
     }
 }

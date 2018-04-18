@@ -14,7 +14,7 @@ namespace QuickOps
         private NotifyIcon trayIcon;
         //private ClipboardCleaner MyClipboardCleaner = new ClipboardCleaner();
         private QuickOpsForm quickOpsForm;
-        private Monitor monitor;
+        //private Monitor monitor;
         //private Thread writeThread;
 
         public TrayIcon()
@@ -28,11 +28,13 @@ namespace QuickOps
                 Visible = true,
                 Text = "Click to show quick ops form."
             };
-            quickOpsForm = new QuickOpsForm();
-            monitor = new Monitor();
-            monitor.CaptureHttp();
-            quickOpsForm.Visible = false;
-            quickOpsForm.TopMost = true;
+            quickOpsForm = new QuickOpsForm
+            {
+                //monitor = new Monitor();
+                //monitor.StartPrintDateTime();
+                Visible = false,
+                TopMost = true
+            };
             trayIcon.MouseClick += new MouseEventHandler(ShowQuickOpsForm);
         }
 
