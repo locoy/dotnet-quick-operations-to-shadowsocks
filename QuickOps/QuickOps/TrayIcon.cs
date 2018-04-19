@@ -30,8 +30,6 @@ namespace QuickOps
             };
             quickOpsForm = new QuickOpsForm
             {
-                //monitor = new Monitor();
-                //monitor.StartPrintDateTime();
                 Visible = false,
                 TopMost = true
             };

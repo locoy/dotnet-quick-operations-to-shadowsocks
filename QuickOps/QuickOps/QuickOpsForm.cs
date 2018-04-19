@@ -17,10 +17,9 @@ namespace QuickOps
 
         public QuickOpsForm()
         {
-            Monitor monitor = new Monitor();
-            monitor.OutputChanged += new EventHandler(Output_Changed);
-            monitor.StartPrintDateTime();
             InitializeComponent();
+            //Monitor monitor = new Monitor();
+            //monitor.OutputChanged += new EventHandler(Output_Changed);
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -30,7 +29,8 @@ namespace QuickOps
 
         private void Output_Changed(object sender, EventArgs e)
         {
-            textBox1.Text = Monitor.output.ToString();
+            //textBox1.Text = (sender as Monitor).Output.ToString();
+            textBox1.Text = "1";
         }
     }
 }

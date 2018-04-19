@@ -12,8 +12,13 @@ namespace QuickOps
 {
     class Monitor
     {
+        public Monitor()
+        {
+            Thread th = new Thread(PrintDateTime);
+            th.Start();
+        }
         public event EventHandler OutputChanged;
-        public static StringBuilder output = new StringBuilder();
+        private StringBuilder output = new StringBuilder();
         public StringBuilder Output
         {
             get
@@ -23,27 +28,20 @@ namespace QuickOps
             set
             {
                 output = value;
-                OnPropertyChanged(new EventArgs());
+                OnOutputChanged(new EventArgs());
             }
         }
-
-        public void StartPrintDateTime()
-        {
-            Thread th = new Thread(PrintDateTime);
-            th.Start();
-        }
         
-        private static void PrintDateTime()
+        private void PrintDateTime()
         {
             while (true)
             {
-                output.Append(DateTime.Now.ToString());
-                output.Append("\n");
+                Output.AppendLine(DateTime.Now.ToString());
                 Thread.Sleep(1000);
             }
         }
 
-        private void OnPropertyChanged(EventArgs e)
+        private void OnOutputChanged(EventArgs e)
         {
             OutputChanged?.Invoke(this, e);
         }
