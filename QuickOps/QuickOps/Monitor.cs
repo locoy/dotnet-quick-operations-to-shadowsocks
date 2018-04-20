@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 using Fiddler;
 
 namespace QuickOps
 {
     class Monitor
     {
+        Thread th;
         public Monitor()
         {
-            Thread th = new Thread(PrintDateTime);
+            th = new Thread(PrintDateTime);
             th.Start();
+            Application.ApplicationExit += new EventHandler(OnAppExit);
         }
         public event EventHandler OutputChanged;
         private StringBuilder output = new StringBuilder();
@@ -44,6 +47,11 @@ namespace QuickOps
         private void OnOutputChanged(EventArgs e)
         {
             OutputChanged?.Invoke(this, e);
+        }
+
+        private void OnAppExit(object sender, EventArgs e)
+        {
+            th.Abort();
         }
     }
 }

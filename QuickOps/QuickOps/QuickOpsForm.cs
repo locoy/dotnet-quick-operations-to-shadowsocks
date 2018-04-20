@@ -13,13 +13,9 @@ namespace QuickOps
 {
     public partial class QuickOpsForm : Form
     {
-        public Stream texts;
-
         public QuickOpsForm()
         {
             InitializeComponent();
-            //Monitor monitor = new Monitor();
-            //monitor.OutputChanged += new EventHandler(Output_Changed);
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -27,10 +23,14 @@ namespace QuickOps
 
         }
 
-        private void Output_Changed(object sender, EventArgs e)
+        public void WriteToForm(string s)
         {
-            //textBox1.Text = (sender as Monitor).Output.ToString();
-            textBox1.Text = "1";
+            textBox1.Text = s;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

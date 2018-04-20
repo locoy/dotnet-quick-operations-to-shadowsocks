@@ -12,17 +12,14 @@ namespace QuickOps
     class TrayIcon : ApplicationContext
     {
         private NotifyIcon trayIcon;
-        //private ClipboardCleaner MyClipboardCleaner = new ClipboardCleaner();
         private QuickOpsForm quickOpsForm;
-        //private Monitor monitor;
+        private Monitor monitor;
         //private Thread writeThread;
 
         public TrayIcon()
         {
-            // Initialize Tray Icon
             trayIcon = new NotifyIcon()
             {
-                //Icon = Resources.AppTrayIcon,
                 Icon = Resources.Plane,
                 ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Exit", Exit) }),
                 Visible = true,
@@ -33,6 +30,8 @@ namespace QuickOps
                 Visible = false,
                 TopMost = true
             };
+            monitor = new Monitor();
+            monitor.OutputChanged += new EventHandler(WriteLogToForm);
             trayIcon.MouseClick += new MouseEventHandler(ShowQuickOpsForm);
         }
 
@@ -40,7 +39,8 @@ namespace QuickOps
         {
             // Hide tray icon, otherwise it will remain shown until user mouses over it
             trayIcon.Visible = false;
-            Application.Exit();
+            //Application.Exit();
+            Application.ExitThread();
         }
 
         void ShowQuickOpsForm(object sender, MouseEventArgs e)
@@ -56,6 +56,11 @@ namespace QuickOps
                     quickOpsForm.Visible = false;
                 }
             }
+        }
+
+        void WriteLogToForm(object sender, EventArgs e)
+        {
+            quickOpsForm.WriteToForm(monitor.Output.ToString());
         }
 
         //when the form is visible, stick it in the front and refresh data every 2 seconds;
