@@ -40,7 +40,7 @@ namespace QuickOps
             // Hide tray icon, otherwise it will remain shown until user mouses over it
             trayIcon.Visible = false;
             //Application.Exit();
-            Application.ExitThread();
+            Application.Exit();
         }
 
         void ShowQuickOpsForm(object sender, MouseEventArgs e)

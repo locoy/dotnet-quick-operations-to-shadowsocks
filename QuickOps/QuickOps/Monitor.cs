@@ -39,7 +39,7 @@ namespace QuickOps
         {
             while (true)
             {
-                Output.AppendLine(DateTime.Now.ToString());
+                Output = Output.AppendLine(DateTime.Now.ToString());
                 Thread.Sleep(1000);
             }
         }
