@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOps", "QuickOps\QuickOps.csproj", "{23B46161-D7D6-49CE-A423-81B28E74DEBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetMonitor", "NetMonitor\NetMonitor.csproj", "{E6ADD97B-8DF7-4DD6-B087-20FF5CFE5F36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{23B46161-D7D6-49CE-A423-81B28E74DEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23B46161-D7D6-49CE-A423-81B28E74DEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23B46161-D7D6-49CE-A423-81B28E74DEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6ADD97B-8DF7-4DD6-B087-20FF5CFE5F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6ADD97B-8DF7-4DD6-B087-20FF5CFE5F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6ADD97B-8DF7-4DD6-B087-20FF5CFE5F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6ADD97B-8DF7-4DD6-B087-20FF5CFE5F36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

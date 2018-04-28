@@ -19,10 +19,21 @@ namespace QuickOps
         public Monitor()
         {
             StartCapture();
-            FiddlerApplication.Log.OnLogString += (object sender, LogEventArgs e) =>
+            Thread th = new Thread(test);
+            th.Start();
+            Application.ApplicationExit += (object sender, EventArgs e) =>
             {
-                Output = new StringBuilder(e.LogString);
+                th.Abort();
             };
+        }
+
+        private void test()
+        {
+            while (true)
+            {
+                FiddlerApplication.Log.LogString(DateTime.Now.ToString() + "\n");
+                Thread.Sleep(3000);
+            }
         }
 
         public event EventHandler OutputChanged;
@@ -52,47 +63,58 @@ namespace QuickOps
 
         private void StartCapture()
         {
+            FiddlerCoreStartupSettings startupSettings = new FiddlerCoreStartupSettingsBuilder().ListenOnPort(80).DecryptSSL().OptimizeThreadPool().Build();
+            FiddlerApplication.Startup(startupSettings);
             FiddlerApplication.Log.OnLogString += (object sender, LogEventArgs e) =>
             {
-                PrintOutput("** LogString: " + e.LogString);
+                PrintOutput(FiddlerApplication.Log.ToString());
             };
-            FiddlerApplication.BeforeRequest += (Session oS) =>
-            {
-                oS.bBufferResponse = false;
-                lock (oAllSessions)
-                {
-                    oAllSessions.Add(oS);
-                }
-                if ((oS.oRequest.pipeClient.LocalPort == 80) && (oS.hostname == "baidu.com"))
-                {
-                    oS.utilCreateResponseAndBypassServer();
-                    oS.oResponse.headers.SetStatus(200, "Ok");
-                    oS.oResponse["Content-Type"] = "text/html; charset=UTF-8";
-                    oS.oResponse["Cache-Control"] = "private, max-age=0";
-                    oS.utilSetResponseBody("<html><body>Request for httpS://" + "baidu.com" + ":" + 80.ToString() + " received. Your request was:<br /><plaintext>" + oS.oRequest.headers.ToString());
-                }
-            };
-            FiddlerApplication.AfterSessionComplete += (Session oS) =>
-            {
-                int count;
-                lock (oAllSessions)
-                {
-                    count = oAllSessions.Count;
-                }
-                //Console.Title = $"Session list contains: {count} sessions";
-            };
-            CONFIG.IgnoreServerCertErrors = false;
-            FiddlerApplication.Prefs.SetBoolPref("fiddler.network.streaming.abortifclientaborts", true);
-            ushort iPort = 8877;
-            FiddlerCoreStartupSettings startupSettings = new FiddlerCoreStartupSettingsBuilder().ListenOnPort(iPort).DecryptSSL().OptimizeThreadPool().Build();
-            FiddlerApplication.Startup(startupSettings);
-            FiddlerApplication.Log.LogFormat("Created endpoint listening on port {0}", iPort);
-            FiddlerApplication.Log.LogFormat("Gateway: {0}", CONFIG.UpstreamGateway.ToString());
-            oSecureEndpoint = FiddlerApplication.CreateProxyEndpoint(80, true, "baidu.com");
-            if (null != oSecureEndpoint)
-            {
-                FiddlerApplication.Log.LogFormat("Created secure endpoint listening on port {0}, using a HTTPS certificate for '{1}'", 80, "baidu.com");
-            }
+
+            //FiddlerApplication.Log.OnLogString += (object sender, LogEventArgs e) =>
+            //{
+            //    PrintOutput("** LogString: " + e.LogString);
+            //};
+            //FiddlerApplication.BeforeRequest += (Session oS) =>
+            //{
+            //    oS.bBufferResponse = false;
+            //    lock (oAllSessions)
+            //    {
+            //        oAllSessions.Add(oS);
+            //    }
+            //    if ((oS.oRequest.pipeClient.LocalPort == 80) && (oS.hostname == "baidu.com"))
+            //    {
+            //        oS.utilCreateResponseAndBypassServer();
+            //        oS.oResponse.headers.SetStatus(200, "Ok");
+            //        oS.oResponse["Content-Type"] = "text/html; charset=UTF-8";
+            //        oS.oResponse["Cache-Control"] = "private, max-age=0";
+            //        oS.utilSetResponseBody("<html><body>Request for httpS://" + "baidu.com" + ":" + 80.ToString() + " received. Your request was:<br /><plaintext>" + oS.oRequest.headers.ToString());
+            //    }
+            //};
+            //FiddlerApplication.AfterSessionComplete += (Session oS) =>
+            //{
+            //    int count;
+            //    lock (oAllSessions)
+            //    {
+            //        count = oAllSessions.Count;
+            //    }
+            //    //Console.Title = $"Session list contains: {count} sessions";
+            //};
+            //CONFIG.IgnoreServerCertErrors = false;
+            //FiddlerApplication.Prefs.SetBoolPref("fiddler.network.streaming.abortifclientaborts", true);
+            //ushort iPort = 80;
+            //FiddlerCoreStartupSettings startupSettings = new FiddlerCoreStartupSettingsBuilder().ListenOnPort(iPort).DecryptSSL().OptimizeThreadPool().Build();
+            //FiddlerApplication.Log.OnLogString += (object sender, LogEventArgs e) =>
+            //{
+            //    Output = new StringBuilder(e.LogString + "\t" + DateTime.Now.ToString());
+            //};
+            //FiddlerApplication.Startup(startupSettings);
+            //FiddlerApplication.Log.LogFormat("Created endpoint listening on port {0}", iPort);
+            //FiddlerApplication.Log.LogFormat("Gateway: {0}", CONFIG.UpstreamGateway.ToString());
+            //oSecureEndpoint = FiddlerApplication.CreateProxyEndpoint(80, true, "baidu.com");
+            //if (null != oSecureEndpoint)
+            //{
+            //    FiddlerApplication.Log.LogFormat("Created secure endpoint listening on port {0}, using a HTTPS certificate for '{1}'", 80, "baidu.com");
+            //}
         }
 
     }
