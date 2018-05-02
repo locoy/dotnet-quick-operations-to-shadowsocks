@@ -13,6 +13,7 @@ namespace QuickOps
     {
         private NotifyIcon trayIcon;
         private QuickOpsForm quickOpsForm;
+        private JsonOpsForm jsonOpsForm;
         private Monitor monitor;
         //private Thread writeThread;
 
@@ -32,7 +33,8 @@ namespace QuickOps
             };
             monitor = new Monitor();
             monitor.OutputChanged += new EventHandler(WriteLogToForm);
-            trayIcon.MouseClick += new MouseEventHandler(ShowQuickOpsForm);
+            //trayIcon.MouseClick += new MouseEventHandler(ShowQuickOpsForm);
+            trayIcon.MouseClick += new MouseEventHandler(ShowJsonOpsForm);
         }
 
         void Exit(object sender, EventArgs e)
@@ -55,6 +57,15 @@ namespace QuickOps
                 {
                     quickOpsForm.Visible = false;
                 }
+            }
+        }
+
+        void ShowJsonOpsForm(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                jsonOpsForm = new JsonOpsForm();
+                jsonOpsForm.Visible = true;
             }
         }
 
