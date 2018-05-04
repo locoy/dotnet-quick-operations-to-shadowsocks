@@ -40,6 +40,11 @@ namespace QuickOps
         {
 
         }
+
+        private void JsonOpsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class NumbersAndLetters

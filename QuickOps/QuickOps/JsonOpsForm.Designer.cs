@@ -72,6 +72,7 @@
             this.Controls.Add(this.button1);
             this.Name = "JsonOpsForm";
             this.Text = "JsonOpsForm";
+            this.Load += new System.EventHandler(this.JsonOpsForm_Load);
             this.ResumeLayout(false);
 
         }

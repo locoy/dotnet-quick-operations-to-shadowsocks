@@ -33,8 +33,8 @@ namespace QuickOps
             };
             monitor = new Monitor();
             monitor.OutputChanged += new EventHandler(WriteLogToForm);
-            //trayIcon.MouseClick += new MouseEventHandler(ShowQuickOpsForm);
-            trayIcon.MouseClick += new MouseEventHandler(ShowJsonOpsForm);
+            trayIcon.MouseClick += new MouseEventHandler(ShowQuickOpsForm);
+            //trayIcon.MouseClick += new MouseEventHandler(ShowJsonOpsForm);
         }
 
         void Exit(object sender, EventArgs e)

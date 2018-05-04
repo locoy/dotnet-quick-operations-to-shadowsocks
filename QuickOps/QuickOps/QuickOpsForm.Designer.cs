@@ -60,6 +60,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "QuickOpsForm";
             this.Text = "QuickOpsForm";
+            this.Load += new System.EventHandler(this.QuickOpsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
