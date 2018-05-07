@@ -10,6 +10,7 @@ namespace QuickOps2SS.View
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        public QuickOpsForm quickOpsForm;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -38,11 +39,13 @@ namespace QuickOps2SS.View
             // 
             // notifyIcon1
             // 
+            quickOpsForm = new QuickOpsForm();
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.Icon = Resources.plane;
             this.notifyIcon1.ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Exit", Exit) });
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            this.notifyIcon1.MouseClick += new MouseEventHandler(this.ShowOrHideQuickOpsForm);
             // 
             // TrayIconForm
             // 
@@ -54,6 +57,21 @@ namespace QuickOps2SS.View
             this.Load += new System.EventHandler(this.TrayIconForm_Load);
             this.ResumeLayout(false);
 
+        }
+
+        private void ShowOrHideQuickOpsForm(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                if (quickOpsForm.Visible == false)
+                {
+                    quickOpsForm.Visible = true;
+                }  
+                else
+                {
+                    quickOpsForm.Visible = false;
+                }
+            }
         }
 
         private void Exit(object sender, EventArgs e)
