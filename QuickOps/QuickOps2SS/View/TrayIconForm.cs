@@ -26,5 +26,10 @@ namespace QuickOps2SS.View
         {
             Visible = false;
         }
+
+        private void quickOpsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

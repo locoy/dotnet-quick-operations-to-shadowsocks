@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuickOps2SS.Model
 {
-    class HttpStatistics
+    static class HttpStatistics
     {
         public enum HttpStatusCode
         {
@@ -47,19 +47,32 @@ namespace QuickOps2SS.Model
                 }
             }
         }
+        public static event EventHandler StatusChanged;
+        private static void OnStatusChanged(EventArgs e)
+        {
 
-        public List<SingleHttpStatus> Statuses { get; set; }
-        public HttpStatistics()
+        }
+
+        public static List<SingleHttpStatus> Statuses { get; set; }
+        static HttpStatistics()
         {
             Statuses = new List<SingleHttpStatus>();
         }
-        public void InsertStatus()
+        public static void InsertStatus(SingleHttpStatus singleHttpStatus)
         {
-
+            if (!Statuses.Contains(singleHttpStatus))
+            {
+                Statuses.Add(singleHttpStatus);
+                OnStatusChanged(new EventArgs());
+            }
         }
-        public void DeleteStatus()
+        public static void DeleteStatus(SingleHttpStatus singleHttpStatus)
         {
-
+            if (Statuses.Contains(singleHttpStatus))
+            {
+                Statuses.Remove(singleHttpStatus);
+                OnStatusChanged(new EventArgs());
+            }
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using QuickOps2SS.Model;
 
 namespace QuickOps2SS.View
 {
@@ -15,6 +17,15 @@ namespace QuickOps2SS.View
         public QuickOpsForm()
         {
             InitializeComponent();
+            HttpStatistics.StatusChanged += (object sender, EventArgs e) =>
+            {
+
+            };
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

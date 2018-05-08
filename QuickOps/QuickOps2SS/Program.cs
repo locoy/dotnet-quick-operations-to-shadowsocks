@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuickOps2SS.View;
+using QuickOps2SS.Model;
 
 namespace QuickOps2SS
 {

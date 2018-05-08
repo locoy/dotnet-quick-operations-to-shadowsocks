@@ -35,17 +35,25 @@ namespace QuickOps2SS.View
         {
             this.components = new System.ComponentModel.Container();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.quickOpsForm = new QuickOps2SS.View.QuickOpsForm();
             this.SuspendLayout();
             // 
             // notifyIcon1
             // 
-            quickOpsForm = new QuickOpsForm();
+            this.notifyIcon1.Icon = global::QuickOps2SS.Properties.Resources.plane;
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            this.notifyIcon1.Icon = Resources.plane;
-            this.notifyIcon1.ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Exit", Exit) });
+            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ShowOrHideQuickOpsForm);
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
-            this.notifyIcon1.MouseClick += new MouseEventHandler(this.ShowOrHideQuickOpsForm);
+            // 
+            // quickOpsForm
+            // 
+            this.quickOpsForm.ClientSize = new System.Drawing.Size(800, 450);
+            this.quickOpsForm.Location = new System.Drawing.Point(494, 494);
+            this.quickOpsForm.Name = "quickOpsForm";
+            this.quickOpsForm.Text = "QuickOpsForm";
+            this.quickOpsForm.Visible = false;
+            this.quickOpsForm.Load += new System.EventHandler(this.quickOpsForm_Load);
             // 
             // TrayIconForm
             // 
