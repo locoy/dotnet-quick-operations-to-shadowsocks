@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using QuickOps2SS.Model;
 using System.Threading;
 using System.Windows.Forms;
+using QuickOps2SS.View;
 
 namespace QuickOps2SS.Controller
 {
@@ -25,8 +26,7 @@ namespace QuickOps2SS.Controller
         {
             while (true)
             {
-                HttpStatistics.InsertStatus(new HttpStatistics.SingleHttpStatus(DateTime.Now.ToString(), 244));
-                Thread.Sleep(2000);
+                
             }
         }
     }

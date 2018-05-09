@@ -16,14 +16,22 @@ namespace QuickOps2SS.View
     {
         public QuickOpsForm()
         {
+            FormClosing += QuickOpsForm_FormClosing;
             InitializeComponent();
-            HttpStatistics.StatusChanged += (object sender, EventArgs e) =>
-            {
-
-            };
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void QuickOpsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Visible = false;
+            e.Cancel = true;
+        }
+
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -11,6 +11,7 @@ namespace QuickOps2SS.View
         /// </summary>
         private System.ComponentModel.IContainer components = null;
         public QuickOpsForm quickOpsForm;
+        public 
 
         /// <summary>
         /// Clean up any resources being used.
@@ -43,8 +44,9 @@ namespace QuickOps2SS.View
             this.notifyIcon1.Icon = global::QuickOps2SS.Properties.Resources.plane;
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
+            //this.notifyIcon1.ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Exit", Exit)});
             this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ShowOrHideQuickOpsForm);
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseDoubleClick);
             // 
             // quickOpsForm
             // 
@@ -53,7 +55,7 @@ namespace QuickOps2SS.View
             this.quickOpsForm.Name = "quickOpsForm";
             this.quickOpsForm.Text = "QuickOpsForm";
             this.quickOpsForm.Visible = false;
-            this.quickOpsForm.Load += new System.EventHandler(this.quickOpsForm_Load);
+            this.quickOpsForm.Load += new System.EventHandler(this.QuickOpsForm_Load);
             // 
             // TrayIconForm
             // 
@@ -74,6 +76,7 @@ namespace QuickOps2SS.View
                 if (quickOpsForm.Visible == false)
                 {
                     quickOpsForm.Visible = true;
+                    
                 }  
                 else
                 {

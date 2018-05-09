@@ -17,7 +17,7 @@ namespace QuickOps2SS.View
             InitializeComponent();
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
         }
@@ -27,7 +27,7 @@ namespace QuickOps2SS.View
             Visible = false;
         }
 
-        private void quickOpsForm_Load(object sender, EventArgs e)
+        private void QuickOpsForm_Load(object sender, EventArgs e)
         {
 
         }
