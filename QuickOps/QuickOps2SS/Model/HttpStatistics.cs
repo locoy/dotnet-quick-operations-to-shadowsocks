@@ -54,6 +54,13 @@ namespace QuickOps2SS.Model
         }
 
         public List<SingleHttpStatus> Statuses { get; set; }
+        public int StatusCount
+        {
+            get
+            {
+                return Statuses.Count;
+            }
+        }
         public HttpStatistics()
         {
             Statuses = new List<SingleHttpStatus>();

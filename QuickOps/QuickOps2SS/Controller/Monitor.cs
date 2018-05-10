@@ -14,20 +14,8 @@ namespace QuickOps2SS.Controller
     {
         public Monitor()
         {
-            Thread th = new Thread(UpdateStatistics);
-            th.Start();
-            Application.ApplicationExit += (object sender, EventArgs e) =>
-            {
-                th.Abort();
-            };
+
         }
 
-        private void UpdateStatistics()
-        {
-            while (true)
-            {
-                
-            }
-        }
     }
 }

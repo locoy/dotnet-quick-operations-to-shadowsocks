@@ -101,6 +101,7 @@
     <Compile Include="Controller\Monitor.cs" />
     <Compile Include="Controller\PacManager.cs" />
     <Compile Include="Controller\PacServer.cs" />
+    <Compile Include="Controller\SSController.cs" />
     <Compile Include="Model\HttpStatistics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
