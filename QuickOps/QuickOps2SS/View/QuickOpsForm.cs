@@ -16,18 +16,42 @@ namespace QuickOps2SS.View
     public partial class QuickOpsForm : Form
     {
         SSController controller;
+        HttpStatistics statistics;
+        DataTable statisticsTable;
 
         public QuickOpsForm()
         {
             controller = new SSController();
+            statistics = controller.statistics;
             FormClosing += QuickOpsForm_FormClosing;
             InitializeComponent();
             controller.statistics.StatusChanged += Statistics_StatusChanged;
+            InitTable();
+        }
+
+        private void InitTable()
+        {
+            statisticsTable = new DataTable();
+            statisticsTable.Columns.Add(new DataColumn("Name", typeof(String)));
+            statisticsTable.Columns.Add(new DataColumn("Code", typeof(String)));
+            foreach(var s in statistics.Statuses)
+            {
+                statisticsTable.Rows.Add(s.Url, Convert.ToInt32(s.StatusCode));
+            }
+            listView1.Columns.Add("Name", 300, HorizontalAlignment.Left);
+            listView1.Columns.Add("Code", 200, HorizontalAlignment.Left);
         }
 
         private void Statistics_StatusChanged(object sender, EventArgs e)
         {
-            richTextBox1.Text = controller.statistics.StatusCount.ToString();
+            //richTextBox1.Text = statistics.StatusCount.ToString();
+            var row = statistics.Statuses[statistics.Statuses.Count - 1];
+            statisticsTable.Rows.Add(row.Url.ToString(), row.StatusCode);
+            listView1.BeginUpdate();
+            ListViewItem lt = new ListViewItem();
+            lt.Text = row.Url.ToString();
+            listView1.Items.Add(lt);
+            listView1.EndUpdate();
         }
 
         private void QuickOpsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -36,12 +60,17 @@ namespace QuickOps2SS.View
             e.Cancel = true;
         }
 
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

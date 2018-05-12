@@ -54,6 +54,7 @@ namespace QuickOps2SS.View
         private void Exit(object sender, EventArgs e)
         {
             notifyIcon1.Visible = false;
+            quickOpsForm.Dispose();
             Application.Exit();
         }
     }
