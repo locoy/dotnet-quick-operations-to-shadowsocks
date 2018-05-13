@@ -28,45 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.components = new System.ComponentModel.Container();
+            this.httpStatisticsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.httpStatisticsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // dataGridView1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(93, 208);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(537, 176);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(144, 39);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(475, 140);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(63, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 30;
+            this.dataGridView1.Size = new System.Drawing.Size(651, 387);
+            this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // QuickOpsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.richTextBox1);
+            this.ClientSize = new System.Drawing.Size(779, 442);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "QuickOpsForm";
             this.Text = "QuickOpsForm";
             this.TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)(this.httpStatisticsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.BindingSource httpStatisticsBindingSource;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

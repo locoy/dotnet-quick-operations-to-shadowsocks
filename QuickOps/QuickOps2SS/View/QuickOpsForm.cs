@@ -17,7 +17,7 @@ namespace QuickOps2SS.View
     {
         SSController controller;
         HttpStatistics statistics;
-        DataTable statisticsTable;
+        private delegate void UpdateViewFromListCallback(List<HttpStatistics.SingleHttpStatus> singles);
 
         public QuickOpsForm()
         {
@@ -25,33 +25,33 @@ namespace QuickOps2SS.View
             statistics = controller.statistics;
             FormClosing += QuickOpsForm_FormClosing;
             InitializeComponent();
-            controller.statistics.StatusChanged += Statistics_StatusChanged;
-            InitTable();
+            statistics.StatusChanged += Statistics_StatusChanged;
+            dataGridView1.DataSource = statistics.Statuses;
+            dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
         }
 
-        private void InitTable()
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            statisticsTable = new DataTable();
-            statisticsTable.Columns.Add(new DataColumn("Name", typeof(String)));
-            statisticsTable.Columns.Add(new DataColumn("Code", typeof(String)));
-            foreach(var s in statistics.Statuses)
+            throw new NotImplementedException();
+        }
+
+        private void UpdateViewFromList(List<HttpStatistics.SingleHttpStatus> singles)
+        {
+            if (dataGridView1.InvokeRequired)
             {
-                statisticsTable.Rows.Add(s.Url, Convert.ToInt32(s.StatusCode));
+                UpdateViewFromListCallback setListCallback = new UpdateViewFromListCallback(UpdateViewFromList);
+                Invoke(setListCallback, new object[] { singles});
             }
-            listView1.Columns.Add("Name", 300, HorizontalAlignment.Left);
-            listView1.Columns.Add("Code", 200, HorizontalAlignment.Left);
+            else
+            {
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = singles;
+            }
         }
 
         private void Statistics_StatusChanged(object sender, EventArgs e)
         {
-            //richTextBox1.Text = statistics.StatusCount.ToString();
-            var row = statistics.Statuses[statistics.Statuses.Count - 1];
-            statisticsTable.Rows.Add(row.Url.ToString(), row.StatusCode);
-            listView1.BeginUpdate();
-            ListViewItem lt = new ListViewItem();
-            lt.Text = row.Url.ToString();
-            listView1.Items.Add(lt);
-            listView1.EndUpdate();
+            UpdateViewFromList(statistics.Statuses);
         }
 
         private void QuickOpsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -71,6 +71,11 @@ namespace QuickOps2SS.View
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
