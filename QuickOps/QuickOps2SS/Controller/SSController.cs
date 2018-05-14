@@ -11,9 +11,11 @@ namespace QuickOps2SS.Controller
 {
     class SSController
     {
+        public Router router;
         public HttpStatistics statistics;
         public SSController()
         {
+            router = new Router();
             statistics = new HttpStatistics();
             Thread th = new Thread(UpdateStatistics);
             th.Start();

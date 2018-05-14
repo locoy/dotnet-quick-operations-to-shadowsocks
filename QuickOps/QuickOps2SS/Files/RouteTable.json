@@ -1,0 +1,9 @@
+{
+  "urls": [ "aaa", "bbb", "ccc" ],
+  "servers": [ "1qaz", "2wsx", "3edc" ],
+  "pairs": [
+    [ "aaa", "1qaz" ],
+    [ "bbb", "2wsx" ],
+    [ "ccc", "2wsx" ]
+  ]
+}

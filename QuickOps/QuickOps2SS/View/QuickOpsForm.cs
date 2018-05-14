@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using System.Threading;
 using QuickOps2SS.Model;
 using QuickOps2SS.Controller;
+using Newtonsoft.Json;
 
 namespace QuickOps2SS.View
 {
     public partial class QuickOpsForm : Form
     {
+        public Router router;
         SSController controller;
         HttpStatistics statistics;
         private delegate void UpdateViewFromListCallback(List<HttpStatistics.SingleHttpStatus> singles);
@@ -22,6 +24,7 @@ namespace QuickOps2SS.View
         public QuickOpsForm()
         {
             controller = new SSController();
+            router = controller.router;
             statistics = controller.statistics;
             FormClosing += QuickOpsForm_FormClosing;
             InitializeComponent();
@@ -32,7 +35,10 @@ namespace QuickOps2SS.View
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            throw new NotImplementedException();
+            if(e.ColumnIndex == 0)
+            {
+                router.Urls.Add(dataGridView1[0, e.RowIndex].ToString());
+            }
         }
 
         private void UpdateViewFromList(List<HttpStatistics.SingleHttpStatus> singles)

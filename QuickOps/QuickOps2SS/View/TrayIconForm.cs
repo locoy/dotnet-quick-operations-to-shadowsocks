@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuickOps2SS.Controller;
 
 namespace QuickOps2SS.View
 {
     public partial class TrayIconForm : Form
     {
-        public QuickOpsForm quickOpsForm;
+        QuickOpsForm quickOpsForm;
+        Router router;
 
         public TrayIconForm()
         {
             quickOpsForm = new QuickOpsForm();
+            router = quickOpsForm.router;
             quickOpsForm.ClientSize = new System.Drawing.Size(800, 450);
             quickOpsForm.Location = new System.Drawing.Point(494, 494);
             quickOpsForm.Name = "quickOpsForm";
@@ -25,7 +28,17 @@ namespace QuickOps2SS.View
             quickOpsForm.Load += new System.EventHandler(this.QuickOpsForm_Load);
             InitializeComponent();
             notifyIcon1.MouseClick += new MouseEventHandler(ShowOrHideQuickOpsForm);
-            notifyIcon1.ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Exit", Exit)});
+            notifyIcon1.ContextMenu = new ContextMenu(
+                new MenuItem[] 
+                {
+                    new MenuItem("Exit", Exit),
+                    new MenuItem("RunAutoConfig", RunAutoConfig)
+                });
+        }
+
+        private void RunAutoConfig(object sender, EventArgs e)
+        {
+            router.RunAutoRouteConfig();
         }
 
         private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
