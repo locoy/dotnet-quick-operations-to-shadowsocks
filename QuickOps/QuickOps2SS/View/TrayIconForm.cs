@@ -14,12 +14,10 @@ namespace QuickOps2SS.View
     public partial class TrayIconForm : Form
     {
         QuickOpsForm quickOpsForm;
-        Router router;
 
         public TrayIconForm()
         {
             quickOpsForm = new QuickOpsForm();
-            router = quickOpsForm.router;
             quickOpsForm.ClientSize = new System.Drawing.Size(800, 450);
             quickOpsForm.Location = new System.Drawing.Point(494, 494);
             quickOpsForm.Name = "quickOpsForm";
@@ -38,7 +36,7 @@ namespace QuickOps2SS.View
 
         private void RunAutoConfig(object sender, EventArgs e)
         {
-            router.RunAutoRouteConfig();
+
         }
 
         private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)

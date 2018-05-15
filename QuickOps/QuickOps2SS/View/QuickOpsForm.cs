@@ -16,7 +16,7 @@ namespace QuickOps2SS.View
 {
     public partial class QuickOpsForm : Form
     {
-        public Router router;
+        Router router;
         SSController controller;
         HttpStatistics statistics;
         private delegate void UpdateViewFromListCallback(List<HttpStatistics.SingleHttpStatus> singles);
@@ -31,6 +31,10 @@ namespace QuickOps2SS.View
             statistics.StatusChanged += Statistics_StatusChanged;
             dataGridView1.DataSource = statistics.Statuses;
             dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
+            foreach(string s in router.Urls)
+            {
+                richTextBox1.Text += s + "\n";
+            }
         }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
