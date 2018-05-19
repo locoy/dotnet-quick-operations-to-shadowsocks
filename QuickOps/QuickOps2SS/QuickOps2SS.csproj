@@ -98,7 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Monitor.cs" />
+    <Compile Include="Controller\HttpMonitor.cs" />
     <Compile Include="Controller\PacManager.cs" />
     <Compile Include="Controller\PacServer.cs" />
     <Compile Include="Controller\Router.cs" />

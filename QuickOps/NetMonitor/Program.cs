@@ -44,7 +44,8 @@ namespace NetMonitor
                 Monitor.Enter(oAllSessions);
                 foreach (Session oS in oAllSessions)
                 {
-                    Console.Write(String.Format("{0} {1} {2}\n{3} {4}\n\n", oS.id, oS.oRequest.headers.HTTPMethod, Ellipsize(oS.fullUrl, 60), oS.responseCode, oS.oResponse.MIMEType));
+                    //Console.Write(String.Format("{0} {1} {2}\n{3} {4}\n\n", oS.id, oS.oRequest.headers.HTTPMethod, Ellipsize(oS.fullUrl, 60), oS.responseCode, oS.oResponse.MIMEType));
+                    Console.WriteLine($"{oS.id}, {oS.oRequest.headers.HTTPMethod}\n{Ellipsize(oS.fullUrl, 60)}\n{oS.responseCode}\n{oS.Timers.ServerDoneResponse}\n");
                 }
             }
             finally
@@ -75,10 +76,10 @@ namespace NetMonitor
 
             // Simply echo notifications to the console.  Because Fiddler.CONFIG.QuietMode=true 
             // by default, we must handle notifying the user ourselves.
-            FiddlerApplication.OnNotification += delegate (object sender, NotificationEventArgs oNEA) { Console.WriteLine("** NotifyUser: " + oNEA.NotifyString); };
-            FiddlerApplication.Log.OnLogString += delegate (object sender, LogEventArgs oLEA) { Console.WriteLine("** LogString: " + oLEA.LogString); };
+            FiddlerApplication.OnNotification += (object sender, NotificationEventArgs oNEA) => { Console.WriteLine("** NotifyUser: " + oNEA.NotifyString); };
+            FiddlerApplication.Log.OnLogString += (object sender, LogEventArgs oLEA) => { Console.WriteLine("** LogString: " + oLEA.LogString); };
 
-            FiddlerApplication.BeforeRequest += delegate (Fiddler.Session oS)
+            FiddlerApplication.BeforeRequest += delegate (Session oS)
             {
                 // Console.WriteLine("Before request for:\t" + oS.fullUrl);
                 // In order to enable response tampering, buffering mode MUST
@@ -144,10 +145,9 @@ namespace NetMonitor
                 //oS.utilDecodeResponse(); oS.utilReplaceInResponse("Microsoft", "Bayden");
             };*/
 
-            FiddlerApplication.AfterSessionComplete += delegate (Session oS)
+            FiddlerApplication.AfterSessionComplete += (Session oS) =>
             {
-                //Console.WriteLine("Finished session:\t" + oS.fullUrl); 
-                Console.Title = ("Session list contains: " + oAllSessions.Count.ToString() + " sessions");
+                Console.Title = ($"Session list contains: {oAllSessions.Count.ToString()} sessions.");
             };
 
             // Tell the system console to handle CTRL+C by calling our method that
