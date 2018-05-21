@@ -18,7 +18,8 @@ namespace QuickOps2SS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            TrayIconForm trayIconForm = new TrayIconForm();
+            //TrayIconForm trayIconForm = new TrayIconForm();
+
             Application.Run();
         }
     }

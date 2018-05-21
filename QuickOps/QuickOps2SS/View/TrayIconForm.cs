@@ -14,6 +14,7 @@ namespace QuickOps2SS.View
     public partial class TrayIconForm : Form
     {
         QuickOpsForm quickOpsForm;
+        HttpMonitor monitor;
 
         public TrayIconForm()
         {
@@ -29,8 +30,8 @@ namespace QuickOps2SS.View
             notifyIcon1.ContextMenu = new ContextMenu(
                 new MenuItem[] 
                 {
-                    new MenuItem("Exit", Exit),
-                    new MenuItem("RunAutoConfig", RunAutoConfig)
+                    new MenuItem("RunAutoConfig", RunAutoConfig),
+                    new MenuItem("Exit", Exit)
                 });
         }
 
@@ -58,7 +59,16 @@ namespace QuickOps2SS.View
         {
             if(e.Button == MouseButtons.Left)
             {
-                quickOpsForm.Visible = !quickOpsForm.Visible;
+                if (quickOpsForm.Visible)
+                {
+                    quickOpsForm.Visible = false;
+                    monitor?.Dispose();
+                }
+                else
+                {
+                    quickOpsForm.Visible = true;
+                    monitor = new HttpMonitor();
+                }
             }
         }
 

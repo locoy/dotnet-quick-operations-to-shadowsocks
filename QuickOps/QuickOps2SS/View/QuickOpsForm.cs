@@ -19,6 +19,7 @@ namespace QuickOps2SS.View
         Router router;
         SSController controller;
         HttpStatistics statistics;
+        HttpMonitor monitor;
         private delegate void UpdateViewFromListCallback(List<HttpStatistics.SingleHttpStatus> singles);
 
         public QuickOpsForm()
@@ -66,6 +67,7 @@ namespace QuickOps2SS.View
 
         private void QuickOpsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             Visible = false;
             e.Cancel = true;
         }
