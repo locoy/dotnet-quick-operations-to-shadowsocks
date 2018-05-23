@@ -102,7 +102,6 @@
     <Compile Include="Controller\PacManager.cs" />
     <Compile Include="Controller\PacServer.cs" />
     <Compile Include="Controller\Router.cs" />
-    <Compile Include="Controller\ShadowsocksController.cs" />
     <Compile Include="Controller\SSController.cs" />
     <Compile Include="Model\HttpStatistics.cs" />
     <Compile Include="Program.cs" />
@@ -153,7 +152,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Files\RouteTable.xml" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\plane.ico" />
   </ItemGroup>
