@@ -11,7 +11,7 @@ using QuickOps2SS.Properties;
 
 namespace QuickOps2SS.Controller
 {
-    class Router
+    public class RouterController
     {
         private class TableObject
         {
@@ -22,7 +22,7 @@ namespace QuickOps2SS.Controller
         public List<string> Urls { get; set; }
         public List<string> Servers { get; set; }
         public Dictionary<string, string> BestRouteTable { get; private set; }
-        public Router()
+        public RouterController()
         {
             using (StreamReader sr = new StreamReader(@"..\..\Files\RouteTable.json"))
             {

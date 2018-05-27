@@ -101,9 +101,10 @@
     <Compile Include="Controller\HttpMonitor.cs" />
     <Compile Include="Controller\PacManager.cs" />
     <Compile Include="Controller\PacServer.cs" />
-    <Compile Include="Controller\Router.cs" />
+    <Compile Include="Controller\RouterController.cs" />
     <Compile Include="Controller\SSController.cs" />
     <Compile Include="Model\HttpStatistics.cs" />
+    <Compile Include="Model\RouteTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\MenuViewController.cs" />

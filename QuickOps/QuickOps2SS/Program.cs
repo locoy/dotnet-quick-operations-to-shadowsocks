@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuickOps2SS.View;
 using QuickOps2SS.Model;
+using QuickOps2SS.Controller;
 
 namespace QuickOps2SS
 {
@@ -18,8 +19,8 @@ namespace QuickOps2SS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //TrayIconForm trayIconForm = new TrayIconForm();
-
+            SSController controller = new SSController();
+            MenuViewController menu = new MenuViewController(controller);
             Application.Run();
         }
     }

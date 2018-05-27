@@ -9,15 +9,15 @@ using QuickOps2SS.Model;
 
 namespace QuickOps2SS.Controller
 {
-    class SSController
+    public class SSController
     {
-        public Router router;
+        public RouterController router;
         public HttpStatistics statistics;
         public HttpMonitor monitor;
         public SSController()
         {
             monitor = new HttpMonitor();
-            router = new Router();
+            router = new RouterController();
             statistics = new HttpStatistics();
             Thread th = new Thread(UpdateStatistics);
             th.Start();

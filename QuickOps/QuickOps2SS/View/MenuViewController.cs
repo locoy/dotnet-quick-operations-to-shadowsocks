@@ -30,7 +30,7 @@ namespace QuickOps2SS.View
         {
             this.controller = controller;
             this.monitor = controller.monitor;
-            quickOpsForm = new QuickOpsForm();
+            quickOpsForm = new QuickOpsForm(controller);
             quickOpsForm.Name = "QuickOpsForm";
             quickOpsForm.Text = "Quick Ops Form";
             quickOpsForm.Visible = false;

@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace QuickOps2SS.Controller
 {
-    class HttpMonitor : IDisposable
+    public class HttpMonitor : IDisposable
     {
         public event EventHandler NewSessionHandler;
         Proxy SecureEndpoint;

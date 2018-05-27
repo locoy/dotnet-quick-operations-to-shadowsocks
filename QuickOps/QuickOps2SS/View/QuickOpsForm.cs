@@ -16,15 +16,15 @@ namespace QuickOps2SS.View
 {
     public partial class QuickOpsForm : Form
     {
-        Router router;
-        SSController controller;
+        RouterController router;
+        SSController _controller;
         HttpStatistics statistics;
         HttpMonitor monitor;
         private delegate void UpdateViewFromListCallback(List<HttpStatistics.SingleHttpStatus> singles);
 
-        public QuickOpsForm()
+        public QuickOpsForm(SSController controller)
         {
-            controller = new SSController();
+            this._controller = controller;
             router = controller.router;
             statistics = controller.statistics;
             FormClosing += QuickOpsForm_FormClosing;
@@ -67,7 +67,6 @@ namespace QuickOps2SS.View
 
         private void QuickOpsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
             Visible = false;
             e.Cancel = true;
         }

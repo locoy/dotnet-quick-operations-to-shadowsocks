@@ -18,7 +18,7 @@ namespace QuickOps2SS.View
 
         public TrayIconForm()
         {
-            quickOpsForm = new QuickOpsForm();
+            //quickOpsForm = new QuickOpsForm();
             quickOpsForm.ClientSize = new System.Drawing.Size(800, 450);
             quickOpsForm.Location = new System.Drawing.Point(494, 494);
             quickOpsForm.Name = "quickOpsForm";
