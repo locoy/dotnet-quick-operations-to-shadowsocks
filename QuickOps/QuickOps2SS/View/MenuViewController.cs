@@ -17,8 +17,8 @@ namespace QuickOps2SS.View
         private HttpMonitor monitor;
 
         private NotifyIcon notifyIcon;
-        private Bitmap iconmap;
-        private Icon icon;
+        //private Bitmap iconmap;
+        //private Icon icon;
         private ContextMenu contextMenu;
 
         private MenuItem exitItem;
@@ -36,10 +36,12 @@ namespace QuickOps2SS.View
             quickOpsForm.Visible = false;
             exitItem = new MenuItem("Exit", Exit);
             runAutoRouteItem = new MenuItem("Run AutoRoute", RunAutoConfig);
+            contextMenu = new ContextMenu(new MenuItem[] { runAutoRouteItem, exitItem });
             notifyIcon = new NotifyIcon
             {
+                Visible = true,
                 Icon = Resources.plane,
-                ContextMenu = new ContextMenu(new MenuItem[] { runAutoRouteItem, exitItem })
+                ContextMenu = contextMenu
             };
             notifyIcon.MouseClick += new MouseEventHandler(ShowOrHideQuickOpsForm);
         }

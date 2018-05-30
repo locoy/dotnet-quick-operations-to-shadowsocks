@@ -32,9 +32,9 @@ namespace QuickOps2SS.View
             statistics.StatusChanged += Statistics_StatusChanged;
             dataGridView1.DataSource = statistics.Statuses;
             dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
-            foreach(string s in router.Urls)
+            foreach(SingleRoute s in router.GetRouteTable().Routes)
             {
-                richTextBox1.Text += s + "\n";
+                richTextBox1.Text += s.ToString() + "\n";
             }
         }
 
@@ -42,7 +42,7 @@ namespace QuickOps2SS.View
         {
             if(e.ColumnIndex == 0)
             {
-                router.Urls.Add(dataGridView1[0, e.RowIndex].ToString());
+                router.InsertRoute(dataGridView1[0, e.RowIndex].ToString());
             }
         }
 

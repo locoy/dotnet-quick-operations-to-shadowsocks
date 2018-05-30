@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace QuickOps2SS.Model
 {
-    class RouteTable
+    public class RouteTable
     {
+        public List<string> Servers;
+        public List<string> Urls;
+        public List<SingleRoute> Routes;
     }
 }

@@ -8,52 +8,46 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 using QuickOps2SS.Properties;
+using QuickOps2SS.Model;
 
 namespace QuickOps2SS.Controller
 {
     public class RouterController
     {
-        private class TableObject
-        {
-            public string[] urls { get; set; }
-            public string[] servers { get; set; }
-            public List<string[]> pairs { get; set; }
-        }
-        public List<string> Urls { get; set; }
-        public List<string> Servers { get; set; }
-        public Dictionary<string, string> BestRouteTable { get; private set; }
+        RouteTable table = new RouteTable();
         public RouterController()
         {
-            using (StreamReader sr = new StreamReader(@"..\..\Files\RouteTable.json"))
+
+        }
+
+        public RouteTable GetRouteTable()
+        {
+            return table;
+        }
+
+        public void InsertRoute(string url)
+        {
+            if (IsValidUrl(url))
             {
-                string jsontext = sr.ReadToEnd();
-                Urls = new List<string>();
-                Servers = new List<string>();
-                BestRouteTable = new Dictionary<string, string>();
-                if (!String.IsNullOrEmpty(jsontext))
-                {
-                    TableObject rr = JsonConvert.DeserializeObject<TableObject>(jsontext);
-                    for (int i = 0; i < rr.urls.Length; i++)
-                    {
-                        Urls.Add(rr.urls[i]);
-                    }
-                }
+                table.Urls.Add(url);
             }
         }
 
-        public Dictionary<string, string> RunAutoRouteConfig()
+        private bool IsValidServer(string server)
         {
             throw new NotImplementedException();
         }
 
-        public void WriteToPacFile()
+        private bool IsValidUrl(string url)
         {
-
+            throw new NotImplementedException();
         }
 
-        public void WriteRouteTableToJson()
+        private bool IsValidRoute(SingleRoute route)
         {
-
+            string server = route.ForwardServer;
+            string url = route.ForwardUrl;
+            throw new NotImplementedException();
         }
     }
 }
